@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.conf import settings
 from django.db import models
 
@@ -56,15 +58,6 @@ class ModerateModel(models.Model):
     class Meta:
         abstract = True
 
-    def set_pending(self):
-        self.moderate_state = ModerateState.pending()
-
-    def set_published(self):
-        self.moderate_state = ModerateState.published()
-
-    def set_removed(self):
-        self.moderate_state = ModerateState.removed()
-
     def _pending(self):
         return self.moderate_state == ModerateState.pending()
     pending = property(_pending)
@@ -72,3 +65,21 @@ class ModerateModel(models.Model):
     def _published(self):
         return self.moderate_state == ModerateState.published()
     published = property(_published)
+
+    def _removed(self):
+        return self.moderate_state == ModerateState.removed()
+    removed = property(_removed)
+
+    def _set_moderated(self, user, moderate_state):
+        self.date_moderated = datetime.now()
+        self.user_moderated = user
+        self.moderate_state = moderate_state
+
+    def set_pending(self, user):
+        self._set_moderated(user, ModerateState.pending())
+
+    def set_published(self, user):
+        self._set_moderated(user, ModerateState.published())
+
+    def set_removed(self, user):
+        self._set_moderated(user, ModerateState.removed())
