@@ -65,17 +65,17 @@ class ModerateModel(models.Model):
         abstract = True
         unique_together = ('section', 'moderate_state')
 
-    def _pending(self):
+    def _is_pending(self):
         return self.moderate_state == ModerateState.pending()
-    pending = property(_pending)
+    is_pending = property(_is_pending)
 
-    def _published(self):
+    def _is_published(self):
         return self.moderate_state == ModerateState.published()
-    published = property(_published)
+    is_published = property(_is_published)
 
-    def _removed(self):
+    def _is_removed(self):
         return self.moderate_state == ModerateState.removed()
-    removed = property(_removed)
+    is_removed = property(_is_removed)
 
     def _set_moderated(self, user, moderate_state):
         self.date_moderated = datetime.now()
