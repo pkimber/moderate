@@ -21,7 +21,7 @@ def get_readme():
 setup(
     name='pkimber-moderate',
     packages=['moderate', 'moderate.tests', 'moderate.management', 'moderate.management.commands'],
-    version='0.0.02',
+    version='0.0.03',
     description='Moderate',
     author='Patrick Kimber',
     author_email='code@pkimber.net',
