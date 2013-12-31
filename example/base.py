@@ -171,3 +171,10 @@ LOGIN_URL = reverse_lazy('login.login')
 # must be logged in before accessing the view otherwise this URL
 # will be called.
 # LOGIN_URL = reverse_lazy('login.login')
+
+# https://github.com/johnsensible/django-sendfile
+SENDFILE_BACKEND = 'sendfile.backends.development'
+SENDFILE_ROOT = 'media-private'
+
+FTP_STATIC_DIR = None
+FTP_STATIC_URL = None

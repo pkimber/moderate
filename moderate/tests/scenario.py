@@ -6,7 +6,7 @@ from moderate.tests.model_maker import (
 )
 
 
-def create_default_moderate_state():
+def default_moderate_state():
     try:
         ModerateState.pending()
     except ModerateState.DoesNotExist:
