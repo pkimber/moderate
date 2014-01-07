@@ -82,11 +82,11 @@ class ModerateModel(models.Model):
         self.user_moderated = user
         self.moderate_state = moderate_state
 
-    def set_pending(self, user):
+    def _set_pending(self, user):
         self._set_moderated(user, ModerateState.pending())
 
-    def set_published(self, user):
+    def _set_published(self, user):
         self._set_moderated(user, ModerateState.published())
 
-    def set_removed(self, user):
+    def _set_removed(self, user):
         self._set_moderated(user, ModerateState.removed())
